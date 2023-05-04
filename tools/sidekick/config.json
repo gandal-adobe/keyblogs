@@ -1,6 +1,6 @@
 {
   "project": "Keysight Blogs",
-  "host": "www.keysight.com",
+  "host": "https://main--keyblogs--gandal-adobe.hlx.live/",
   "plugins": [
     {
       "id": "tagger",
