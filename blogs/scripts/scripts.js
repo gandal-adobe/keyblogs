@@ -627,23 +627,28 @@ function loadDelayed() {
   }
 }
 
-const foo = ({ detail }) => {
-  const sk = detail.data;
-  alert('foo');
-  console.log(sk);
-  // your custom code from button.action goes here
-};
+const preflightListener = async () => {
+  const preflight = createTag('div', { class: 'preflight' });
+  const content = await loadBlock(preflight);
 
+  const { getModal } = await import('../blocks/modal/modal.js');
+  getModal(null, { id: 'preflight', content, closeEvent: 'closeModal' });
+};
 const sk = document.querySelector('helix-sidekick');
 if (sk) {
   // sidekick already loaded
-  sk.addEventListener('custom:foo', foo);
+  sk.addEventListener('custom:preflight', preflightListener);
 } else {
   // wait for sidekick to be loaded
-  document.addEventListener('helix-sidekick-ready', () => {
-    document.querySelector('helix-sidekick')
-      .addEventListener('custom:foo', foo);
-  }, { once: true });
+  document.addEventListener(
+    'helix-sidekick-ready',
+    () => {
+      document
+        .querySelector('helix-sidekick')
+        .addEventListener('custom:preflight', preflightListener);
+    },
+    { once: true }
+  );
 }
 
 async function loadPage() {
