@@ -629,6 +629,7 @@ function loadDelayed() {
 
 const foo = ({ detail }) => {
   const sk = detail.data;
+  alert('foo');
   console.log(sk);
   // your custom code from button.action goes here
 };
