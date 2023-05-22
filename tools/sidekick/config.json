@@ -20,9 +20,9 @@
       "includePaths": [ "**.docx**" ]
     },
     {
-      "id": "foo",
-      "title": "Foo",
-      "event":"foo"
+      "id": "preflight",
+      "title": "Preflight",
+      "event":"preflight"
     }
   ]
 }
