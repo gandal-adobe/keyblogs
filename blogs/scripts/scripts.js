@@ -16,6 +16,8 @@ import {
   createOptimizedPicture,
 } from './lib-franklin.js';
 
+import { createTag, getMetadata, localizeLink, loadStyle, getConfig } from '../../utils/utils.js';
+
 const LCP_BLOCKS = ['hero', 'featured-posts']; // add your LCP blocks to the list
 window.hlx.RUM_GENERATION = 'project-1'; // add your RUM generation information here
 window.keysight = window.keysight || {};
@@ -628,6 +630,7 @@ function loadDelayed() {
 }
 
 const preflightListener = async () => {
+  const { createTag, loadBlock } = await import('../utils/utils.js');
   const preflight = createTag('div', { class: 'preflight' });
   const content = await loadBlock(preflight);
 
