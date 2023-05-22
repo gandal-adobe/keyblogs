@@ -627,6 +627,24 @@ function loadDelayed() {
   }
 }
 
+const foo = ({ detail }) => {
+  const sk = detail.data;
+  console.log(sk);
+  // your custom code from button.action goes here
+};
+
+const sk = document.querySelector('helix-sidekick');
+if (sk) {
+  // sidekick already loaded
+  sk.addEventListener('custom:foo', foo);
+} else {
+  // wait for sidekick to be loaded
+  document.addEventListener('helix-sidekick-ready', () => {
+    document.querySelector('helix-sidekick')
+      .addEventListener('custom:foo', foo);
+  }, { once: true });
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
